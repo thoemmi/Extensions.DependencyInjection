@@ -1,0 +1,11 @@
+assembly-versioning-scheme: MajorMinorPatchTag
+assembly-informational-format: '{SemVer}-{ShortSha}'
+mode: Mainline
+ignore:
+  sha: []
+merge-message-formats: {}
+continuous-delivery-fallback-tag: ''
+branches:
+  master:
+    tag: ''
+#    increment: Minor

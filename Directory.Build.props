@@ -1,0 +1,10 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <Authors>Thomas Freudenberg</Authors>
+
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+</Project>

@@ -80,7 +80,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
             serviceProvider
                 .Invoking(sp => sp.GetRequiredNamedService<IPlugin>("B"))
                 .Should()
-                .Throw<InvalidOperationException>();
+                .Throw<ArgumentException>();
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
             serviceProvider
                 .Invoking(sp => sp.GetRequiredNamedService<IPlugin>("B"))
                 .Should()
-                .Throw<InvalidOperationException>();
+                .Throw<ArgumentException>();
         }
     }
 }

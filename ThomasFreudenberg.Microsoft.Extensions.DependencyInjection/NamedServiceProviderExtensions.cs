@@ -24,7 +24,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
             var registry = serviceProvider.GetService<NamedServiceRegistry<TService>>();
             if (registry == null)
             {
-                throw new InvalidOperationException("No named service has been registered.");
+                throw new ArgumentException("No named service has been registered.");
             }
 
             var implementationType = registry.GetImplementationType(reportName);

@@ -5,7 +5,16 @@
 
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
+
     <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <PackageProjectUrl>https://github.com/thoemmi/Extensions.DependencyInjection</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

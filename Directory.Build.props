@@ -5,6 +5,7 @@
 
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,25 +1,63 @@
 name: .NET Core
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
+
+env:
+  DOTNET_NOLOGO: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
 jobs:
-  build:
+  Build:
+    if: github.event_name == 'push' && !contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '***NO_CI***')
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.3
+      with:
+        versionSpec: '5.3.x'
+
+    - name: Use GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.3
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.102
+        source-url: https://nuget.pkg.github.com/thoemmi/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
     - name: Install dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
+
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      run: |
+        mkdir ${{ github.workspace }}/package
+        dotnet pack --configuration Release --no-build --output "${{ github.workspace }}/package"
+
+    - name: Upload Package
+      uses: actions/upload-artifact@v1
+      with:
+        name: nuget
+        path: "${{ github.workspace }}/package"
+     
+    - name: Publish package
+      if: github.ref == 'refs/heads/master'
+      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json

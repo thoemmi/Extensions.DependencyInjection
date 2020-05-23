@@ -49,9 +49,11 @@ jobs:
         mkdir ${{ github.workspace }}/package
         dotnet pack --configuration Release --no-build --output "${{ github.workspace }}/package"
 
-    - name: 'Upload Package'
+    - name: Upload Package
       uses: actions/upload-artifact@v1
       with:
         name: nuget
         path: "${{ github.workspace }}/package"
      
+    - name: Publish package
+      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json

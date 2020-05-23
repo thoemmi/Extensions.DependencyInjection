@@ -1,10 +1,8 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using ThomasFreudenberg.Microsoft.Extensions.DependencyInjection;
-using ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests;
 using Xunit;
 
-namespace Thoemmi.Microsoft.Extensions.DependencyInjection.Tests
+namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
 {
     public class ScopedTests
     {

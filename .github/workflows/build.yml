@@ -59,4 +59,5 @@ jobs:
         path: "${{ github.workspace }}/package"
      
     - name: Publish package
+      if: github.ref == 'refs/heads/master'
       run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json

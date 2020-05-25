@@ -41,6 +41,18 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        public static IServiceCollection AddNamedScoped<TService, TImplementation>(this IServiceCollection services, string reportName, TImplementation instance)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            var registry = services.GetServiceRegistry<TService>();
+            registry.Register<TImplementation>(reportName);
+
+            services.AddScoped(sp => instance);
+
+            return services;
+        }
+
         private static NamedServiceRegistry<TService> GetServiceRegistry<TService>(this IServiceCollection services)
         {
             NamedServiceRegistry<TService> registry;

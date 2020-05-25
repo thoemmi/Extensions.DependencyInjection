@@ -12,6 +12,16 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
             _registeredImplementations.Add(serviceName, typeof(TImplementation));
         }
 
+        public void Register(string serviceName, Type implementationType)
+        {
+            if (!(typeof(TService)).IsAssignableFrom(implementationType))
+            {
+                throw new ArgumentException($"{implementationType} does not implement {typeof(TService)}", nameof(implementationType));
+            }
+
+            _registeredImplementations.Add(serviceName, implementationType);
+        }
+
         public Type GetImplementationType(string serviceName)
         {
             if (!_registeredImplementations.TryGetValue(serviceName, out var serviceType))

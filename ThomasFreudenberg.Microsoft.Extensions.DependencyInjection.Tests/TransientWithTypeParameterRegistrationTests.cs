@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
 {
-    public class TransientTests
+    public class TransientWithTypeParameterRegistrationTests
     {
         [Fact]
         public void can_resolve_transient_class()

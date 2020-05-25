@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
@@ -17,6 +18,30 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        public static IServiceCollection AddNamedTransient<TService, TImplementation>(this IServiceCollection services, string reportName, TImplementation instance)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            var registry = services.GetServiceRegistry<TService>();
+            registry.Register(reportName, typeof(TImplementation));
+
+            services.AddTransient(sp => instance);
+
+            return services;
+        }
+
+        public static IServiceCollection AddNamedTransient<TService, TImplementation>(this IServiceCollection services, string reportName, Func<IServiceProvider, TImplementation> implementationFactory)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            var registry = services.GetServiceRegistry<TService>();
+            registry.Register(reportName, typeof(TImplementation));
+
+            services.AddTransient(implementationFactory);
+
+            return services;
+        }
+
         public static IServiceCollection AddNamedScoped<TService, TImplementation>(this IServiceCollection services, string reportName)
             where TService : class
             where TImplementation : class, TService
@@ -25,6 +50,30 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
             registry.Register<TImplementation>(reportName);
 
             services.AddScoped<TImplementation>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddNamedScoped<TService, TImplementation>(this IServiceCollection services, string reportName, TImplementation instance)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            var registry = services.GetServiceRegistry<TService>();
+            registry.Register<TImplementation>(reportName);
+
+            services.AddScoped(sp => instance);
+
+            return services;
+        }
+
+        public static IServiceCollection AddNamedScoped<TService, TImplementation>(this IServiceCollection services, string reportName, Func<IServiceProvider, TImplementation> implementationFactory)
+            where TService : class
+            where TImplementation : class, TService
+        {
+            var registry = services.GetServiceRegistry<TService>();
+            registry.Register<TImplementation>(reportName);
+
+            services.AddScoped(implementationFactory);
 
             return services;
         }

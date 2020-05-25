@@ -7,5 +7,5 @@ merge-message-formats: {}
 continuous-delivery-fallback-tag: ''
 branches:
   master:
-    tag: ''
+    tag: preview
 #    increment: Minor

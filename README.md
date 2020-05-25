@@ -2,6 +2,8 @@
 
 This package adds the option to use **named registrations** with **Microsoft.Extensions.DependencyInjection**.
 
+![.NET Core](https://github.com/thoemmi/Extensions.DependencyInjection/workflows/Build/badge.svg)
+
 ## Registration
 
 You can register services with their desired names:

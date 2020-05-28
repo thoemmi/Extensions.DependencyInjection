@@ -2,7 +2,9 @@
 
 This package adds the option to use **named registrations** with **Microsoft.Extensions.DependencyInjection**.
 
-![.NET Core](https://github.com/thoemmi/Extensions.DependencyInjection/workflows/Build/badge.svg)
+![Build](https://github.com/thoemmi/Extensions.DependencyInjection/workflows/Build/badge.svg)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection/absoluteLatest)
+[![Nuget](https://img.shields.io/nuget/v/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection/)
 
 ## Registration
 

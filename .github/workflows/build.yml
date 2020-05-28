@@ -56,8 +56,12 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: nuget
-        path: "${{ github.workspace }}/package"
+        path: "${{ github.workspace }}/package/*"
      
-    - name: Publish package
+    - name: Publish package to Github
       if: github.ref == 'refs/heads/master'
       run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json
+
+    - name: Publish package to NuGet.org
+      if: github.ref == 'refs/heads/master'
+      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}

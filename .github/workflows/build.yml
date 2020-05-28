@@ -56,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: nuget
-        path: "${{ github.workspace }}/package/*"
+        path: "${{ github.workspace }}/package"
      
     - name: Publish package to Github
       if: github.ref == 'refs/heads/master'

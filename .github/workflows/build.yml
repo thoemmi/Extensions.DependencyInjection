@@ -60,8 +60,8 @@ jobs:
      
     - name: Publish package to Github
       if: github.ref == 'refs/heads/master'
-      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json
+      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://nuget.pkg.github.com/thoemmi/index.json --no-symbols
 
     - name: Publish package to NuGet.org
       if: github.ref == 'refs/heads/master'
-      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} -NoSymbols
+      run: dotnet nuget push "${{ github.workspace }}/package/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --no-symbols

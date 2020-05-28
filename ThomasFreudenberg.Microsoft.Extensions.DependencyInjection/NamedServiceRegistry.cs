@@ -5,11 +5,11 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
 {
     public class NamedServiceRegistry<TService>
     {
-        private readonly Dictionary<string, Type> _registeredImplementations = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, List<Type>> _registeredImplementations = new Dictionary<string, List<Type>>(StringComparer.OrdinalIgnoreCase);
 
         public void Register<TImplementation>(string serviceName) where TImplementation : TService
         {
-            _registeredImplementations.Add(serviceName, typeof(TImplementation));
+            Register(serviceName, typeof(TImplementation));
         }
 
         public void Register(string serviceName, Type implementationType)
@@ -19,17 +19,20 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
                 throw new ArgumentException($"{implementationType} does not implement {typeof(TService)}", nameof(implementationType));
             }
 
-            _registeredImplementations.Add(serviceName, implementationType);
-        }
-
-        public Type GetImplementationType(string serviceName)
-        {
-            if (!_registeredImplementations.TryGetValue(serviceName, out var serviceType))
+            if (!_registeredImplementations.TryGetValue(serviceName, out var serviceTypes))
             {
-                throw new ArgumentException($"No service with name {serviceName} has been registered");
+                serviceTypes = new List<Type>();
+                _registeredImplementations.Add(serviceName, serviceTypes);
             }
 
-            return serviceType;
+            serviceTypes.Add(implementationType);
+        }
+
+        public IReadOnlyList<Type> GetImplementationTypes(string serviceName)
+        {
+            return _registeredImplementations.TryGetValue(serviceName, out var serviceTypes)
+                ? (IReadOnlyList<Type>) serviceTypes 
+                : Array.Empty<Type>();
         }
     }
 }

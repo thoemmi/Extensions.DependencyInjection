@@ -30,12 +30,9 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
 
         public IReadOnlyList<Type> GetImplementationTypes(string serviceName)
         {
-            if (!_registeredImplementations.TryGetValue(serviceName, out var serviceTypes))
-            {
-                throw new ArgumentException($"No service with name {serviceName} has been registered");
-            }
-
-            return serviceTypes;
+            return _registeredImplementations.TryGetValue(serviceName, out var serviceTypes)
+                ? (IReadOnlyList<Type>) serviceTypes 
+                : Array.Empty<Type>();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
 
         public void Register(string serviceName, Type implementationType)
         {
-            if (!(typeof(TService)).IsAssignableFrom(implementationType))
+            if (!typeof(TService).IsAssignableFrom(implementationType))
             {
                 throw new ArgumentException($"{implementationType} does not implement {typeof(TService)}", nameof(implementationType));
             }

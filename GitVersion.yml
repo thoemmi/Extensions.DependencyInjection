@@ -1,5 +1,4 @@
 assembly-versioning-scheme: MajorMinorPatchTag
-assembly-informational-format: '{SemVer}-{ShortSha}'
 mode: Mainline
 ignore:
   sha: []

@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)"/>
-    <EmbeddedFiles Include="$([System.IO.Path]::Combine('$(IntermediateOutputPath)','GitVersionInformation.g.cs'))"/>
   </ItemGroup>
 
   <!-- Workaround for https://github.com/dotnet/sdk/issues/11105 -->

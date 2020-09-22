@@ -3,16 +3,16 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
+namespace Thoemmi.Extensions.DependencyInjection.Tests
 {
-    public class TransientWithLambdaInstanceRegistrationTests
+    public class TransientWithTypeParameterRegistrationTests
     {
         [Fact]
         public void can_resolve_transient_class()
         {
             var services = new ServiceCollection();
-            services.AddNamedTransient<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedTransient<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedTransient<IPlugin, PluginA>("A");
+            services.AddNamedTransient<IPlugin, PluginB>("B");
 
             using var serviceProvider = services.BuildServiceProvider();
             var pluginA = serviceProvider.GetNamedService<IPlugin>("A");
@@ -28,8 +28,8 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         public void can_resolve_transient_class_in_scope()
         {
             var services = new ServiceCollection();
-            services.AddNamedTransient<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedTransient<IPlugin,PluginB>("B", sp => new PluginB());
+            services.AddNamedTransient<IPlugin, PluginA>("A");
+            services.AddNamedTransient<IPlugin, PluginB>("B");
 
             using var scope = services.BuildServiceProvider().CreateScope();
             var serviceProvider = scope.ServiceProvider;
@@ -57,8 +57,8 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         public void can_resolve_required_transient_class()
         {
             var services = new ServiceCollection();
-            services.AddNamedTransient<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedTransient<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedTransient<IPlugin, PluginA>("A");
+            services.AddNamedTransient<IPlugin, PluginB>("B");
 
             using var serviceProvider = services.BuildServiceProvider();
             var pluginB = serviceProvider.GetRequiredNamedService<IPlugin>("B");
@@ -87,7 +87,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         public void resolving_required_not_existing_class_throws()
         {
             var services = new ServiceCollection();
-            services.AddNamedTransient<IPlugin, PluginA>("A", sp => new PluginA());
+            services.AddNamedTransient<IPlugin, PluginA>("A");
 
             using var serviceProvider = services.BuildServiceProvider();
 

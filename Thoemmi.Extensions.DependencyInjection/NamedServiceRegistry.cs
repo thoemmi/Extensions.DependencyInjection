@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
+namespace Thoemmi.Extensions.DependencyInjection
 {
     public class NamedServiceRegistry<TService>
     {

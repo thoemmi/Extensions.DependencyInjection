@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
+namespace Thoemmi.Extensions.DependencyInjection
 {
     public static class NamedServiceExtensions
     {

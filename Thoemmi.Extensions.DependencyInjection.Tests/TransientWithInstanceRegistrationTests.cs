@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
+namespace Thoemmi.Extensions.DependencyInjection.Tests
 {
     public class TransientWithInstanceRegistrationTests
     {

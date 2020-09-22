@@ -1,4 +1,4 @@
-﻿namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
+﻿namespace Thoemmi.Extensions.DependencyInjection.Tests
 {
     public interface IPlugin { }
 

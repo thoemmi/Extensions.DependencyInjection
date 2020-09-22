@@ -2,16 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
+namespace Thoemmi.Extensions.DependencyInjection.Tests
 {
-    public class ScopedWithLambdaRegistrationTests
+    public class ScopedWithInstanceRegistrationTests
     {
         [Fact]
         public void can_resolve_scoped_class()
         {
             var services = new ServiceCollection();
-            services.AddNamedScoped<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedScoped<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedScoped<IPlugin, PluginA>("A", new PluginA());
+            services.AddNamedScoped<IPlugin, PluginB>("B", new PluginB());
 
             using var serviceProvider = services.BuildServiceProvider();
             var pluginA = serviceProvider.GetNamedService<IPlugin>("A");
@@ -27,8 +27,8 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         public void getting_same_named_service_should_return_same_instance()
         {
             var services = new ServiceCollection();
-            services.AddNamedScoped<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedScoped<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedScoped<IPlugin, PluginA>("A", new PluginA());
+            services.AddNamedScoped<IPlugin, PluginB>("B", new PluginB());
 
             using var serviceProvider = services.BuildServiceProvider();
             var pluginA1 = serviceProvider.GetNamedService<IPlugin>("A");
@@ -43,8 +43,8 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         public void can_scoped_transient_class_in_scope()
         {
             var services = new ServiceCollection();
-            services.AddNamedScoped<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedScoped<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedScoped<IPlugin, PluginA>("A", new PluginA());
+            services.AddNamedScoped<IPlugin, PluginB>("B", new PluginB());
 
             using var scope = services.BuildServiceProvider().CreateScope();
             var serviceProvider = scope.ServiceProvider;
@@ -58,11 +58,11 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
         }
 
         [Fact]
-        public void getting_same_named_service_with_different_scopes_should_return_different_instance()
+        public void getting_same_named_service_with_different_scopes_should_return_same_instance()
         {
             var services = new ServiceCollection();
-            services.AddNamedScoped<IPlugin, PluginA>("A", sp => new PluginA());
-            services.AddNamedScoped<IPlugin, PluginB>("B", sp => new PluginB());
+            services.AddNamedScoped<IPlugin, PluginA>("A", new PluginA());
+            services.AddNamedScoped<IPlugin, PluginB>("B", new PluginB());
 
             using var serviceProvider = services.BuildServiceProvider();
             using var scope1 = serviceProvider.CreateScope();
@@ -72,7 +72,7 @@ namespace ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.Tests
 
             pluginA1
                 .Should()
-                .NotBeSameAs(pluginA2);
+                .BeSameAs(pluginA2);
         }
 
         [Fact]

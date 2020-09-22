@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ThomasFreudenberg.Microsoft.Extensions.DependencyInjection\ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Thoemmi.Extensions.DependencyInjection\Thoemmi.Extensions.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

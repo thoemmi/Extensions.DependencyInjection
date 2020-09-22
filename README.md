@@ -1,10 +1,10 @@
-# ThomasFreudenberg.Microsoft.Extensions.DependencyInjection
+# Thoemmi.Extensions.DependencyInjection
 
 This package adds the option to use **named registrations** with **Microsoft.Extensions.DependencyInjection**.
 
 ![Build](https://github.com/thoemmi/Extensions.DependencyInjection/workflows/Build/badge.svg)
-[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection/absoluteLatest)
-[![Nuget](https://img.shields.io/nuget/v/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/ThomasFreudenberg.Microsoft.Extensions.DependencyInjection/)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Thoemmi.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/Thoemmi.Extensions.DependencyInjection/absoluteLatest)
+[![Nuget](https://img.shields.io/nuget/v/Thoemmi.Extensions.DependencyInjection.svg)](https://www.nuget.org/packages/Thoemmi.Extensions.DependencyInjection/)
 
 ## Registration
 

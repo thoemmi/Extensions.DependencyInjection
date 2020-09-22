@@ -4,6 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
 
     <DebugType>embedded</DebugType>
+
+    <Description>Adds support for named service registrations to Microsoft.Extensions.DependencyInjection</Description>
+    <PackageTags>Microsoft;Extensions;DependencyInjection;M.E.DI;Named Services</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
